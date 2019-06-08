@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/RaneWallin/webauth-i-challenge#readme",
   "dependencies": {
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.16.1",
     "helmet": "^3.18.0",
     "jest": "^24.8.0",
     "knex": "^0.17.3",
