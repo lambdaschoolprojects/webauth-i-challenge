@@ -1,11 +1,13 @@
-require("dotenv");
 const express = require("express");
 const helmet = require("helmet");
 const logger = require("morgan");
 const session = require("express-session");
+
 const keys = require("./keys/keys");
 const requireLogin = require("./middleware/requireLogin");
+
 const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const server = express();
 
@@ -31,5 +33,6 @@ server.get("/", (req, res) => {
 });
 
 server.use("/api/users", requireLogin, userRoutes);
+server.use("/api/auth", authRoutes);
 
 module.exports = server;
