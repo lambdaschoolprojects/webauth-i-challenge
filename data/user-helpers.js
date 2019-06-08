@@ -8,11 +8,19 @@ const getUsers = () => {
 };
 
 const getUser = id => {
-  return null;
+  return db("users").where({ id });
 };
 
-const addUser = user => {
-  return null;
+/**
+ *
+ * @param user
+ * @returns id of inserted user
+ */
+const addUser = async user => {
+  const result = await db("users").insert(user);
+  console.log(result);
+
+  return result[0];
 };
 
 const deleteUser = user => {

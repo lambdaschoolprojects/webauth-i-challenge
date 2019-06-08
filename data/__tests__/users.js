@@ -10,30 +10,29 @@ describe("user-helpers.js", () => {
   it("adds a user to the database", async () => {
     const user = { username: "TestUser", password: "password" };
     const result = await db.addUser(user);
-    const foundUser = await db.getUser(result.id);
+    db.getUser(result).then(async newUser => {
+      expect(newUser.username).toEqual(user.username);
 
-    expect(foundUser.username).toBe(user.username);
-
-    await db.deleteUser(foundUser.id);
+      await db.deleteUser(newUser.id);
+    });
   });
 
   it("gets a user by id", async () => {
-    const users = await db.getUsers();
-    const randomUser = getRandom(users.length);
-    const randomId = randomUser.id;
-
-    const user = db.getUser(randomId);
-
-    expect(user).isEqual(randomUser);
+    db.getUsers().then(users => {
+      const randomId = users[getRandom(users.length)].id;
+      db.getUser(randomId).then(user => {
+        expect(user).not.toBeNull();
+      });
+    });
   });
 
   it("deletes a user from the database", async () => {
     const user = { username: "TestUser", password: "password" };
-    const newUser = await db.addUser(user);
-
-    const result = await db.deleteUser(newUser.id);
-
-    expect(result).not.toBe(0);
+    db.addUser(user).then(newUser => {
+      db.deleteUser(newUser).then(result => {
+        expect(result).not.toBe(0);
+      });
+    });
   });
 });
 
