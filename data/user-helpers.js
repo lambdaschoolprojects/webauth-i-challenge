@@ -16,8 +16,19 @@ const getUsers = () => {
  * @param {number} id
  * @returns {object} a user with the matching id, if one exists
  */
-const getUser = id => {
+const getUserById = id => {
   return db("users").where({ id });
+};
+
+/**
+ * Returns a user with the provided name
+ * @param name
+ * @returns {object} user
+ */
+const getUserByUsername = username => {
+  return db("users")
+    .where({ username })
+    .first();
 };
 
 /**
@@ -44,7 +55,8 @@ const deleteUser = async id => {
 
 module.exports = {
   getUsers,
-  getUser,
+  getUserById,
+  getUserByUsername,
   addUser,
   deleteUser
 };
