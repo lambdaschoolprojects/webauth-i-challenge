@@ -4,6 +4,8 @@ const helmet = require("helmet");
 const logger = require("morgan");
 const session = require("express-session");
 const keys = require("./keys/keys");
+const requireLogin = require("./middleware/requireLogin");
+const userRoutes = require("./routes/userRoutes");
 
 const server = express();
 
@@ -27,5 +29,7 @@ server.use(
 server.get("/", (req, res) => {
   res.send("<h1>I'm here</h1>");
 });
+
+server.use("/api/users", requireLogin, userRoutes);
 
 module.exports = server;
