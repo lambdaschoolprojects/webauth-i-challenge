@@ -4,7 +4,8 @@
   "description": "- Authentication.\r - Express Middleware.\r - Password Hashing.\r - Sessions\r - Cookies",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "test",
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,11 @@
     "helmet": "^3.18.0",
     "knex": "^0.17.3",
     "logger": "0.0.1",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "morgan": "^1.9.1",
+    "sqlite3": "^4.0.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
